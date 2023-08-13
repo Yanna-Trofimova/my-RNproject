@@ -2,22 +2,29 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, Keyboard, TouchableWithoutFeedback,Image } from 'react-native';
 import { useFonts } from 'expo-font';
 
-
+const initialState = {
+  login: "",
+  email: "",
+  password: "",
+}
 
 export default function RegistrationScreen() {
   const [isReady, setIsReady] = useState(false);
+  const [state, setState] = useState(initialState);
 
-  const [fontsLoaded] = useFonts({
-    "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-    "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf")
-  });
+  // const [fontsLoaded] = useFonts({
+  //   "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
+  //   "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf")
+  // });
 
-    if (!fontsLoaded) {
-    return null;
-  }
+  //   if (!fontsLoaded) {
+  //   return null;
+  // }
 
   const keyboardHide = () => {
-    Keyboard.dismiss()
+    Keyboard.dismiss();
+    console.log(state);
+    setState(initialState);
   }
 
  
@@ -42,9 +49,9 @@ export default function RegistrationScreen() {
 
              <Text style={{ fontFamily: 'Roboto-Medium', fontSize: 30 ,color: "#212121", fontWeight: 700, marginHorizontal: 107, marginBottom: 17}}>Реєстрація</Text>
               <View style={styles.form}>
-                  <TextInput style={styles.input}  placeholder="Логін"/>
-                  <TextInput style={styles.input }  placeholder="Адреса електронної пошти" />
-                  <TextInput style={styles.input}  secureTextEntry={true} placeholder="Пароль"/>
+                  <TextInput style={styles.input}  placeholder="Логін" onChangeText={(value) => setState((prevState) => ({...prevState, login: value}))} value={state.login} />
+                  <TextInput style={styles.input }  placeholder="Адреса електронної пошти" onChangeText={(value) => setState((prevState) => ({...prevState, email: value}))} value={state.email}  />
+                  <TextInput style={styles.input}  secureTextEntry={true} placeholder="Пароль" onChangeText={(value) => setState((prevState) => ({...prevState, password: value}))} value={state.password} />
                 <TouchableOpacity activeOpacity={0.8} style={styles.btn} onPress={keyboardHide}>
                   <Text style={
                   { fontFamily: 'Roboto-Regular', fontSize: 16 ,color: "#ffff"}
