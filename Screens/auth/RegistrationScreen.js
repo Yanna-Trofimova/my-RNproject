@@ -8,7 +8,7 @@ const initialState = {
   password: "",
 }
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({ navigation }) {
   const [isReady, setIsReady] = useState(false);
   const [state, setState] = useState(initialState);
 
@@ -36,14 +36,14 @@ export default function RegistrationScreen() {
     <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}>
       <ImageBackground
         style={styles.image}
-              source={require('../assets/images/BG.jpg')} >
+              source={require('../../assets/images/BG.jpg')} >
           <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
             <View style={styles.whiteContainer}>
 
               <View style={styles.avatarContainer}>
-                <Image style={styles.avatar} source={require('../assets/images/avatar.jpg')} />
+                <Image style={styles.avatar} source={require('../../assets/images/avatar.jpg')} />
                 <TouchableOpacity style={styles.avatarBtn}>
-                  <Image  source={require('../assets/images/del.png')}/>
+                  <Image  source={require('../../assets/images/del.png')}/>
                 </TouchableOpacity>
               </View>
 
@@ -59,7 +59,11 @@ export default function RegistrationScreen() {
               </TouchableOpacity>
 
                <TouchableOpacity activeOpacity={0.8} style={styles.link}>
-                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 16 ,color: "#1B4371"}}>Вже є акаунт? Увійти</Text>
+                  <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 16, color: "#1B4371" , alignItems: 'center'}}>Вже є акаунт?
+                    
+                      <Text onPress={()=> navigation.navigate("Login")} > Увійти </Text>
+                    
+                    </Text>
               </TouchableOpacity>
               
               </View>
@@ -133,7 +137,7 @@ const styles = StyleSheet.create({
      link: {
        marginTop: 16,
        marginHorizontal: 108,
-    
+      
     },
  
 });

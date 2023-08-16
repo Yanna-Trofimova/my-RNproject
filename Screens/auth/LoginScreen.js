@@ -4,7 +4,8 @@ import { useFonts } from 'expo-font';
 
 
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
+  console.log('nav', navigation);
   const [isReady, setIsReady] = useState(false);
 
 //   const [fontsLoaded] = useFonts({
@@ -29,7 +30,7 @@ export default function LoginScreen() {
     <TouchableWithoutFeedback onPress={()=> Keyboard.dismiss()}>
       <ImageBackground
         style={styles.image}
-              source={require('../assets/images/BG.jpg')} >
+              source={require('../../assets/images/BG.jpg')} >
           <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"}>
             <View style={styles.whiteContainer}>
 
@@ -44,7 +45,11 @@ export default function LoginScreen() {
               </TouchableOpacity>
 
                <TouchableOpacity activeOpacity={0.8} style={styles.link}>
-                <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 16 ,color: "#1B4371"  }}>Немає акаунту? <Text style={{ textDecorationLine:'underline' }}> Зареєструватися </Text> </Text>
+                  <Text style={{ fontFamily: 'Roboto-Regular', fontSize: 16, color: "#1B4371" }}>Немає акаунту?
+                    
+                      <Text onPress={()=> navigation.navigate("Registration")} style={{ textDecorationLine: 'underline' }}> Зареєструватися </Text>
+               
+                  </Text>
               </TouchableOpacity>
               
               </View>
