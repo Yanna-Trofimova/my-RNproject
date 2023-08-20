@@ -12,14 +12,7 @@ export default function RegistrationScreen({ navigation }) {
   const [isReady, setIsReady] = useState(false);
   const [state, setState] = useState(initialState);
 
-  // const [fontsLoaded] = useFonts({
-  //   "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-  //   "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf")
-  // });
-
-  //   if (!fontsLoaded) {
-  //   return null;
-  // }
+  
 
   const keyboardHide = () => {
     Keyboard.dismiss();
