@@ -10,11 +10,13 @@ import PostsScreen from './Screens/mainScreen/PostsScreen';
 import CreatePostScreen from './Screens/mainScreen/CreatePostsScreen';
 import ProfileScreen from './Screens/mainScreen/ProfileScreen ';
 import { useRoute } from './router';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 
 
 export default function App() {
-  const routing = useRoute({});
+  const routing = useRoute(false);
 
     const [fontsLoaded] = useFonts({
     "Roboto-Regular": require("./assets/fonts/Roboto-Regular.ttf"),
@@ -29,9 +31,11 @@ export default function App() {
   
   
   return (
-    <NavigationContainer>
-      {routing}
-    </NavigationContainer>
+    <Provider store={store}>
+       <NavigationContainer>
+          {routing}
+      </NavigationContainer>
+    </Provider>
   );
 }
 

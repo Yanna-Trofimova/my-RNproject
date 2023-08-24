@@ -8,14 +8,7 @@ export default function LoginScreen({ navigation }) {
   console.log('nav', navigation);
   const [isReady, setIsReady] = useState(false);
 
-//   const [fontsLoaded] = useFonts({
-//     "Roboto-Regular": require("../assets/fonts/Roboto-Regular.ttf"),
-//     "Roboto-Medium": require("../assets/fonts/Roboto-Medium.ttf")
-//   });
 
-//     if (!fontsLoaded) {
-//     return null;
-//   }
 
   const keyboardHide = () => {
     Keyboard.dismiss()

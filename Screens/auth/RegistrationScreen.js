@@ -2,6 +2,11 @@ import { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform, Keyboard, TouchableWithoutFeedback,Image } from 'react-native';
 import { useFonts } from 'expo-font';
 
+
+
+import { authSingOutUser } from '../../redux/auth/authOperation'; 
+import { useDispatch } from 'react-redux';
+
 const initialState = {
   login: "",
   email: "",
@@ -12,11 +17,14 @@ export default function RegistrationScreen({ navigation }) {
   const [isReady, setIsReady] = useState(false);
   const [state, setState] = useState(initialState);
 
+  const dispatch = useDispatch();
+
   
 
-  const keyboardHide = () => {
+  const handleSubmit = () => {
     Keyboard.dismiss();
     console.log(state);
+    dispatch(authSingOutUser(state));
     setState(initialState);
   }
 
@@ -45,7 +53,7 @@ export default function RegistrationScreen({ navigation }) {
                   <TextInput style={styles.input}  placeholder="Логін" onChangeText={(value) => setState((prevState) => ({...prevState, login: value}))} value={state.login} />
                   <TextInput style={styles.input }  placeholder="Адреса електронної пошти" onChangeText={(value) => setState((prevState) => ({...prevState, email: value}))} value={state.email}  />
                   <TextInput style={styles.input}  secureTextEntry={true} placeholder="Пароль" onChangeText={(value) => setState((prevState) => ({...prevState, password: value}))} value={state.password} />
-                <TouchableOpacity activeOpacity={0.8} style={styles.btn} onPress={keyboardHide}>
+                <TouchableOpacity activeOpacity={0.8} style={styles.btn} onPress={handleSubmit}>
                   <Text style={
                   { fontFamily: 'Roboto-Regular', fontSize: 16 ,color: "#ffff"}
                 }>Зареєстуватися</Text>
@@ -108,7 +116,7 @@ const styles = StyleSheet.create({
       marginHorizontal: 16,
       borderRadius: 10,
       height: 50,
-      color: '#E8E8E8',
+      color: '#1B4371',
       width: 343,
       marginTop: 16,
       backgroundColor: "#F6F6F6",
