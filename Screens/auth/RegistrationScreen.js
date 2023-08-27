@@ -4,7 +4,7 @@ import { useFonts } from 'expo-font';
 
 
 
-import { authSingOutUser } from '../../redux/auth/authOperation'; 
+import { authSingUpUser } from '../../redux/authOperation'; 
 import { useDispatch } from 'react-redux';
 
 const initialState = {
@@ -24,7 +24,7 @@ export default function RegistrationScreen({ navigation }) {
   const handleSubmit = () => {
     Keyboard.dismiss();
     console.log(state);
-    dispatch(authSingOutUser(state));
+    dispatch(authSingUpUser(state));
     setState(initialState);
   }
 
